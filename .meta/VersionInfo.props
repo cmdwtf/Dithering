@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-    <VersionPrefix>1.0.1</VersionPrefix>
+    <PackageReleaseNotes>Add `IPixelTransform.PaletteSize`.</PackageReleaseNotes>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
   </PropertyGroup>
 </Project>

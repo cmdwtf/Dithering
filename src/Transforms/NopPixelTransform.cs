@@ -17,6 +17,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		public virtual string Name => GetType().Name;
 
+		public virtual int PaletteSize => int.MaxValue;
+
 		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height) =>
 			pixel;
 	}

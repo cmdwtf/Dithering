@@ -90,6 +90,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		public virtual string Name => GetType().Name;
 
+		public virtual int PaletteSize => _map.Length;
+
 		/// <summary>
 		/// Transforms the given pixel.
 		/// </summary>

@@ -35,6 +35,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		public string Name => GetType().Name;
 
+		public int PaletteSize => 2;
+
 		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
 		{
 			byte gray;

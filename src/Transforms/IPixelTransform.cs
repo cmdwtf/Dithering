@@ -18,7 +18,9 @@ namespace cmdwtf.Dithering.Transforms
 
 		#region Properties
 
-		public string Name { get; }
+		string Name { get; }
+
+		int PaletteSize { get; }
 
 		#endregion Properties
 	}
