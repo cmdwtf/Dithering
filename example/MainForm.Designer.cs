@@ -134,7 +134,7 @@ namespace cmdwtf.Dithering.Example
 			this.rootSplitContainer.Panel2.Controls.Add(this.colorConversionGroupBox);
 			this.rootSplitContainer.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
 			this.rootSplitContainer.Size = new System.Drawing.Size(1082, 655);
-			this.rootSplitContainer.SplitterDistance = 747;
+			this.rootSplitContainer.SplitterDistance = 746;
 			this.rootSplitContainer.SplitterWidth = 5;
 			this.rootSplitContainer.TabIndex = 3;
 			// 
@@ -153,7 +153,7 @@ namespace cmdwtf.Dithering.Example
 			// previewSplitContainer.Panel2
 			// 
 			this.previewSplitContainer.Panel2.Controls.Add(this.transformedImageBox);
-			this.previewSplitContainer.Size = new System.Drawing.Size(747, 655);
+			this.previewSplitContainer.Size = new System.Drawing.Size(746, 655);
 			this.previewSplitContainer.SplitterDistance = 322;
 			this.previewSplitContainer.SplitterWidth = 5;
 			this.previewSplitContainer.TabIndex = 0;
@@ -166,7 +166,7 @@ namespace cmdwtf.Dithering.Example
 			this.originalImageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.originalImageBox.Name = "originalImageBox";
 			this.originalImageBox.ShowPixelGrid = true;
-			this.originalImageBox.Size = new System.Drawing.Size(747, 322);
+			this.originalImageBox.Size = new System.Drawing.Size(746, 322);
 			this.originalImageBox.TabIndex = 0;
 			this.originalImageBox.Text = "Original";
 			this.originalImageBox.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -183,7 +183,7 @@ namespace cmdwtf.Dithering.Example
 			this.transformedImageBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.transformedImageBox.Name = "transformedImageBox";
 			this.transformedImageBox.ShowPixelGrid = true;
-			this.transformedImageBox.Size = new System.Drawing.Size(747, 328);
+			this.transformedImageBox.Size = new System.Drawing.Size(746, 328);
 			this.transformedImageBox.TabIndex = 0;
 			this.transformedImageBox.Text = "Transformed";
 			this.transformedImageBox.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -203,7 +203,7 @@ namespace cmdwtf.Dithering.Example
 			this.ditheringModeGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.ditheringModeGroupBox.Name = "ditheringModeGroupBox";
 			this.ditheringModeGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.ditheringModeGroupBox.Size = new System.Drawing.Size(330, 351);
+			this.ditheringModeGroupBox.Size = new System.Drawing.Size(331, 351);
 			this.ditheringModeGroupBox.TabIndex = 1;
 			this.ditheringModeGroupBox.TabStop = false;
 			this.ditheringModeGroupBox.Text = "Dithering Algorithm";
@@ -218,7 +218,7 @@ namespace cmdwtf.Dithering.Example
 			this.otherGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.otherGroupBox.Name = "otherGroupBox";
 			this.otherGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.otherGroupBox.Size = new System.Drawing.Size(313, 61);
+			this.otherGroupBox.Size = new System.Drawing.Size(314, 61);
 			this.otherGroupBox.TabIndex = 3;
 			this.otherGroupBox.TabStop = false;
 			this.otherGroupBox.Text = "Other";
@@ -238,7 +238,7 @@ namespace cmdwtf.Dithering.Example
 			// refreshButton
 			// 
 			this.refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.refreshButton.Location = new System.Drawing.Point(218, 22);
+			this.refreshButton.Location = new System.Drawing.Point(219, 22);
 			this.refreshButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.refreshButton.Name = "refreshButton";
 			this.refreshButton.Size = new System.Drawing.Size(88, 27);
@@ -256,7 +256,7 @@ namespace cmdwtf.Dithering.Example
 			this.orderedGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.orderedGroupBox.Name = "orderedGroupBox";
 			this.orderedGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.orderedGroupBox.Size = new System.Drawing.Size(313, 83);
+			this.orderedGroupBox.Size = new System.Drawing.Size(314, 83);
 			this.orderedGroupBox.TabIndex = 2;
 			this.orderedGroupBox.TabStop = false;
 			this.orderedGroupBox.Text = "Ordered";
@@ -340,7 +340,7 @@ namespace cmdwtf.Dithering.Example
 			this.errorDiffusionGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.errorDiffusionGroupBox.Name = "errorDiffusionGroupBox";
 			this.errorDiffusionGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.errorDiffusionGroupBox.Size = new System.Drawing.Size(313, 136);
+			this.errorDiffusionGroupBox.Size = new System.Drawing.Size(314, 136);
 			this.errorDiffusionGroupBox.TabIndex = 1;
 			this.errorDiffusionGroupBox.TabStop = false;
 			this.errorDiffusionGroupBox.Text = "Error Diffusion";
@@ -489,7 +489,7 @@ namespace cmdwtf.Dithering.Example
 			this.colorConversionGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.colorConversionGroupBox.Name = "colorConversionGroupBox";
 			this.colorConversionGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.colorConversionGroupBox.Size = new System.Drawing.Size(330, 213);
+			this.colorConversionGroupBox.Size = new System.Drawing.Size(331, 213);
 			this.colorConversionGroupBox.TabIndex = 0;
 			this.colorConversionGroupBox.TabStop = false;
 			this.colorConversionGroupBox.Text = "Color Conversion";
