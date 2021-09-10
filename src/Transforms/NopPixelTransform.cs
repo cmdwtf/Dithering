@@ -4,20 +4,25 @@
  * Licensed under the MIT License. See LICENSE for the full text.
  */
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace cmdwtf.Dithering.Transforms
 {
 	/// <summary>
 	/// A do-nothing pixel transformation.
 	/// </summary>
-	public class NopPixelTransform : IPixelTransform
+	public sealed class NopPixelTransform : IPixelTransform
 	{
 		public static NopPixelTransform Instance { get; } = new NopPixelTransform();
 
 		private NopPixelTransform() { }
 
-		public virtual string Name => GetType().Name;
+		public string Name => GetType().Name;
 
-		public virtual int PaletteSize => int.MaxValue;
+		public IReadOnlyCollection<ArgbColor> Palette { get; } = new ReadOnlyCollection<ArgbColor>(System.Array.Empty<ArgbColor>());
+
+		public int PaletteSize => int.MaxValue;
 
 		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height) =>
 			pixel;

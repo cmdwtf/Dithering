@@ -6,17 +6,20 @@
  * Licensed under the MIT License. See LICENSE for the full text.
  */
 
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace cmdwtf.Dithering.Transforms
 {
 	public sealed class MonochromePixelTransform : IPixelTransform
 	{
 		#region Constants
 
-		private readonly ArgbColor _black;
-
+		private static readonly ArgbColor _black =
+			new(0, 0, 0);
+		private static readonly ArgbColor _white =
+			new(255, 255, 255);
 		private readonly byte _threshold;
-
-		private readonly ArgbColor _white;
 
 		#endregion
 
@@ -25,8 +28,6 @@ namespace cmdwtf.Dithering.Transforms
 		public MonochromePixelTransform(byte threshold)
 		{
 			_threshold = threshold;
-			_black = new ArgbColor(0, 0, 0);
-			_white = new ArgbColor(255, 255, 255);
 		}
 
 		#endregion
@@ -34,6 +35,8 @@ namespace cmdwtf.Dithering.Transforms
 		#region IPixelTransform Interface
 
 		public string Name => GetType().Name;
+
+		public IReadOnlyCollection<ArgbColor> Palette { get; } = new ReadOnlyCollection<ArgbColor>(new ArgbColor[] { _black, _white });
 
 		public int PaletteSize => 2;
 

@@ -6,7 +6,7 @@
  */
 
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 
 namespace cmdwtf.Dithering.Transforms
 {
@@ -89,6 +89,8 @@ namespace cmdwtf.Dithering.Transforms
 		#region IPixelTransform Interface
 
 		public virtual string Name => GetType().Name;
+
+		public virtual IReadOnlyCollection<ArgbColor> Palette => new ReadOnlyCollection<ArgbColor>(_map);
 
 		public virtual int PaletteSize => _map.Length;
 

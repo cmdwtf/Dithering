@@ -6,6 +6,8 @@
  * Licensed under the MIT License. See LICENSE for the full text.
  */
 
+using System.Collections.Generic;
+
 namespace cmdwtf.Dithering.Transforms
 {
 	public interface IPixelTransform
@@ -19,6 +21,8 @@ namespace cmdwtf.Dithering.Transforms
 		#region Properties
 
 		string Name { get; }
+
+		IReadOnlyCollection<ArgbColor> Palette { get; }
 
 		int PaletteSize { get; }
 
