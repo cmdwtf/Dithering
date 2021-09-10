@@ -27,7 +27,7 @@ on:
 jobs:
   build-and-deploy:
     if: contains(toJson(github.event.commits), '***NO_CI***') == false
-    name: Build & Deploy Toolkit
+    name: Build & Deploy cmdwtf.Dithering
     
     runs-on: windows-latest
     
