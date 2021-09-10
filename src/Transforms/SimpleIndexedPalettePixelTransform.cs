@@ -1,106 +1,115 @@
-﻿using System.Collections.Generic;
-using Cyotek.Drawing;
-
 /* Finding nearest colors using Euclidean distance
  * https://www.cyotek.com/blog/finding-nearest-colors-using-euclidean-distance
  *
+ * Copyright © 2021 Chris Marc Dailey (nitz)
  * Copyright © 2017 Cyotek Ltd.
  */
 
-namespace Cyotek.DitheringTest.Transforms
+using System.Collections.Generic;
+
+
+namespace cmdwtf.Dithering.Transforms
 {
-  internal abstract class SimpleIndexedPalettePixelTransform : IPixelTransform
-  {
-    #region Constants
+	public abstract class SimpleIndexedPalettePixelTransform : IPixelTransform
+	{
+		#region Constants
 
-    private readonly ArgbColor[] _map;
+		private readonly ArgbColor[] _map;
 
-    private readonly IDictionary<ArgbColor, int> _mapLookup;
+		private readonly IDictionary<ArgbColor, int> _mapLookup;
 
-    #endregion
+		#endregion
 
-    #region Constructors
+		#region Constructors
 
-    protected SimpleIndexedPalettePixelTransform(ArgbColor[] map)
-    {
-      _map = map;
-      _mapLookup = new Dictionary<ArgbColor, int>();
-    }
+		protected SimpleIndexedPalettePixelTransform(ArgbColor[] map)
+		{
+			_map = map;
+			_mapLookup = new Dictionary<ArgbColor, int>();
+		}
 
-    #endregion
+		#endregion
 
-    #region Methods
+		#region Methods
 
-    private int FindNearestColor(ArgbColor current)
-    {
-      /*
-      *             sdist = 255L * 255L * 255L + 1L;      // Compute the color
-      *             for (c=0; c<COLORS; ++c) {            // in colormap[] that
-      *                                                   // is nearest to the
-      * #define D(z) (line[z][x]-colormap[c][z])          // corrected color.
-      *
-      *                 dist = D(0)*D(0) + D(1)*D(1) + D(2)*D(2);
-      *                 if (dist < sdist) {
-      *                     nc = c;
-      *                     sdist = dist;
-      *                 }
-      *             }
-      */
-      int shortestDistance;
-      int index;
+		private int FindNearestColor(ArgbColor current)
+		{
+			/*
+			*             sdist = 255L * 255L * 255L + 1L;      // Compute the color
+			*             for (c=0; c<COLORS; ++c) {            // in colormap[] that
+			*                                                   // is nearest to the
+			* #define D(z) (line[z][x]-colormap[c][z])          // corrected color.
+			*
+			*                 dist = D(0)*D(0) + D(1)*D(1) + D(2)*D(2);
+			*                 if (dist < sdist) {
+			*                     nc = c;
+			*                     sdist = dist;
+			*                 }
+			*             }
+			*/
+			int shortestDistance;
+			int index;
 
-      index = 0;
-      shortestDistance = int.MaxValue;
+			index = 0;
+			shortestDistance = int.MaxValue;
 
-      for (int i = 0; i < _map.Length; i++)
-      {
-        ArgbColor match;
-        int distance;
+			for (int i = 0; i < _map.Length; i++)
+			{
+				ArgbColor match;
+				int distance;
 
-        match = _map[i];
-        distance = this.GetDistance(current, match);
+				match = _map[i];
+				distance = GetDistance(current, match);
 
-        if (distance < shortestDistance)
-        {
-          index = i;
-          shortestDistance = distance;
-        }
-      }
+				if (distance < shortestDistance)
+				{
+					index = i;
+					shortestDistance = distance;
+				}
+			}
 
-      return index;
-    }
+			return index;
+		}
 
-    private int GetDistance(ArgbColor current, ArgbColor match)
-    {
-      int redDifference;
-      int greenDifference;
-      int blueDifference;
+		private int GetDistance(ArgbColor current, ArgbColor match)
+		{
+			int redDifference;
+			int greenDifference;
+			int blueDifference;
 
-      redDifference = current.R - match.R;
-      greenDifference = current.G - match.G;
-      blueDifference = current.B - match.B;
+			redDifference = current.R - match.R;
+			greenDifference = current.G - match.G;
+			blueDifference = current.B - match.B;
 
-      return redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference;
-    }
+			return redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference;
+		}
 
-    #endregion
+		#endregion
 
-    #region IPixelTransform Interface
+		#region IPixelTransform Interface
 
-    public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
-    {
-      int index;
+		/// <summary>
+		/// Transforms the given pixel.
+		/// </summary>
+		/// <param name="data">The image data as a whole.</param>
+		/// <param name="pixel">The pixel to transform.</param>
+		/// <param name="x">The horizontal position of the pixel to transform in the image.</param>
+		/// <param name="y">The vertical position of the pixel to transform in the image.</param>
+		/// <param name="width">The width of the image.</param>
+		/// <param name="height">The height of the image.</param>
+		/// <returns></returns>
+		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
+		{
+			if (!_mapLookup.TryGetValue(pixel, out int index))
+			{
+				index = FindNearestColor(pixel);
 
-      if (!_mapLookup.TryGetValue(pixel, out index))
-      {
-        index = this.FindNearestColor(pixel);
+				_mapLookup.Add(pixel, index);
+			}
 
-        _mapLookup.Add(pixel, index);
-      }
+			return _map[index];
+		}
 
-      return _map[index];
-    }
-
-    #endregion
-  }
+		#endregion
+	}
 }

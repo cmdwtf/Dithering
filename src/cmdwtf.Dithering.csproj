@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+    <RootNamespace>cmdwtf.Dithering</RootNamespace>
+    <AssemblyName>$(RootNamespace)</AssemblyName>
+    <Deterministic>true</Deterministic>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <Description>A library providing several image dithering based color reduction techniques. Based on original work by Cyotek Ltd.</Description>
+    <PackageTags>image;bitmap;dither;dithering;floyd-steinberg;burkes;jarvis;stucki;sierra;atkinson;diffusion;color;palette</PackageTags>
+    <Product>cmd.wtf Dithering</Product>
+
+    <Authors>Chris Marc Dailey (nitz)</Authors>
+    <PackageId>cmdwtf.Dithering</PackageId>
+    <Company>cmd.wtf</Company>
+    <Copyright>© 2021 Chris Marc Dailey</Copyright>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PackageIcon>Icon48.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/cmdwtf/Dithering</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/cmdwtf/Dithering</RepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Title>$(Product)</Title>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.8.64" />
+    <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="$(ProjectDir)..\resources\$(PackageIcon)" Visible="false">
+      <PackagePath>.\</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <Import Project="$(ProjectDir)..\.meta\VersionInfo.props" />
+
+</Project>

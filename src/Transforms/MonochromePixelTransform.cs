@@ -1,47 +1,53 @@
-﻿using Cyotek.Drawing;
+/* Pixel data transformation — Monochrome
+ *
+ * Copyright © 2021 Chris Marc Dailey (nitz)
+ * Copyright © 2015 Cyotek Ltd.
+ *
+ * Licensed under the MIT License. See LICENSE for the full text.
+ */
 
-namespace Cyotek.DitheringTest.Transforms
+namespace cmdwtf.Dithering.Transforms
 {
-  internal sealed class MonochromePixelTransform : IPixelTransform
-  {
-    #region Constants
+	public sealed class MonochromePixelTransform : IPixelTransform
+	{
+		#region Constants
 
-    private readonly ArgbColor _black;
+		private readonly ArgbColor _black;
 
-    private readonly byte _threshold;
+		private readonly byte _threshold;
 
-    private readonly ArgbColor _white;
+		private readonly ArgbColor _white;
 
-    #endregion
+		#endregion
 
-    #region Constructors
+		#region Constructors
 
-    public MonochromePixelTransform(byte threshold)
-    {
-      _threshold = threshold;
-      _black = new ArgbColor(0, 0, 0);
-      _white = new ArgbColor(255, 255, 255);
-    }
+		public MonochromePixelTransform(byte threshold)
+		{
+			_threshold = threshold;
+			_black = new ArgbColor(0, 0, 0);
+			_white = new ArgbColor(255, 255, 255);
+		}
 
-    #endregion
+		#endregion
 
-    #region IPixelTransform Interface
+		#region IPixelTransform Interface
 
-    public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
-    {
-      byte gray;
+		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
+		{
+			byte gray;
 
-      gray = (byte)(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B);
+			gray = (byte)(0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B);
 
-      /*
-       * I'm leaving the alpha channel untouched instead of making it fully opaque
-       * otherwise the transparent areas become fully black, and I was getting annoyed
-       * by this when testing images with large swathes of transparency!
-       */
+			/*
+			 * I'm leaving the alpha channel untouched instead of making it fully opaque
+			 * otherwise the transparent areas become fully black, and I was getting annoyed
+			 * by this when testing images with large swathes of transparency!
+			 */
 
-      return gray < _threshold ? _black : _white;
-    }
+			return gray < _threshold ? _black : _white;
+		}
 
-    #endregion
-  }
+		#endregion
+	}
 }

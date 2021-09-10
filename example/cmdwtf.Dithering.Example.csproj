@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>..\resources\icon.ico</ApplicationIcon>
+    <Authors>Chris Marc Dailey (nitz); Cyotek Ltd.</Authors>
+    <Company>cmd.wtf</Company>
+    <Product>Dithering Test</Product>
+    <Description>A test application for the cmdwtf.Dithering library. Based on original work by Cyotek Ltd.</Description>
+    <Copyright>© 2021 Chris Marc Dailey</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/cmdwtf/Dithering</PackageProjectUrl>
+    <PackageIcon>icon48.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/cmdwtf/Dithering</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>image;bitmap;dither;dithering;floyd-steinberg;burkes;jarvis;stucki;sierra;atkinson;diffusion;color;palette</PackageTags>
+    <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    <NeutralLanguage></NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\sample.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\sample.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\cmdwtf.Dithering.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\resources\icon48.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CyotekImageBox" Version="1.2.1" />
+  </ItemGroup>
+
+</Project>

@@ -1,6 +1,7 @@
 *.suo
 *.user
 *.ndproj
+*.vs
 
 packages
 bin
