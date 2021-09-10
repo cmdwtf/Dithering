@@ -33,6 +33,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		#region IPixelTransform Interface
 
+		public string Name => GetType().Name;
+
 		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height)
 		{
 			byte gray;

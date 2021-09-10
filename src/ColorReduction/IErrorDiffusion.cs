@@ -15,8 +15,14 @@ namespace cmdwtf.Dithering.ColorReduction
 
 		void Diffuse(ArgbColor[] data, ArgbColor original, ArgbColor transformed, int x, int y, int width, int height);
 
+		#endregion Methods
+
+		#region Properties
+
 		bool Prescan { get; }
 
-		#endregion
+		public string Name { get; }
+
+		#endregion Properties
 	}
 }

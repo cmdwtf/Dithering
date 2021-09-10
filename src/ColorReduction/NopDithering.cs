@@ -15,6 +15,8 @@ namespace cmdwtf.Dithering.ColorReduction
 
 		public bool Prescan => false;
 
+		public virtual string Name => GetType().Name;
+
 		private NopDithering() { }
 
 		public void Diffuse(ArgbColor[] data, ArgbColor original, ArgbColor transformed, int x, int y, int width, int height) { }

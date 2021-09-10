@@ -88,6 +88,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		#region IPixelTransform Interface
 
+		public virtual string Name => GetType().Name;
+
 		/// <summary>
 		/// Transforms the given pixel.
 		/// </summary>

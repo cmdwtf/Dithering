@@ -15,6 +15,8 @@ namespace cmdwtf.Dithering.Transforms
 
 		private NopPixelTransform() { }
 
+		public virtual string Name => GetType().Name;
+
 		public ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height) =>
 			pixel;
 	}

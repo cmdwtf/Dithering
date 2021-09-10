@@ -15,5 +15,11 @@ namespace cmdwtf.Dithering.Transforms
 		ArgbColor Transform(ArgbColor[] data, ArgbColor pixel, int x, int y, int width, int height);
 
 		#endregion
+
+		#region Properties
+
+		public string Name { get; }
+
+		#endregion Properties
 	}
 }

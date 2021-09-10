@@ -8,19 +8,24 @@ namespace cmdwtf.Dithering.Transforms
 {
 	public sealed class SimpleIndexedPalettePixelTransformInky : SimpleIndexedPalettePixelTransform
 	{
+		private string _name;
+
+		public override string Name => _name;
+
 		/// <summary>
 		/// A constructor to forward a map to the base class constructor.
 		/// </summary>
 		/// <param name="map">The map to use for the palette.</param>
-		private SimpleIndexedPalettePixelTransformInky(ArgbColor[] map) : base(map)
+		private SimpleIndexedPalettePixelTransformInky(string name, ArgbColor[] map) : base(map)
 		{
+			_name = name;
 		}
 
 		/// <summary>
 		/// A constructor for making a palette with black and white.
 		/// </summary>
-		private SimpleIndexedPalettePixelTransformInky()
-			: this(new[]
+		private SimpleIndexedPalettePixelTransformInky(string name)
+			: this(name, new[]
 			{
 				ArgbColor.FromArgb(0, 0, 0), // black
 				ArgbColor.FromArgb(255, 255, 255), // white
@@ -31,8 +36,8 @@ namespace cmdwtf.Dithering.Transforms
 		/// A constructor for making a palette with black, white, and any third color.
 		/// </summary>
 		/// <param name="thirdColor">The third color of the palette.</param>
-		private SimpleIndexedPalettePixelTransformInky(ArgbColor thirdColor)
-			: this(new[]
+		private SimpleIndexedPalettePixelTransformInky(string name, ArgbColor thirdColor)
+			: this(name, new[]
 			{
 				ArgbColor.FromArgb(0, 0, 0), // black
 				ArgbColor.FromArgb(255, 255, 255), // white
@@ -46,7 +51,7 @@ namespace cmdwtf.Dithering.Transforms
 		/// Display: https://shop.pimoroni.com/products/inky-what?variant=21214020436051
 		/// </summary>
 		public static SimpleIndexedPalettePixelTransformInky Inky2 =>
-			new();
+			new(nameof(Inky2));
 
 		/// <summary>
 		/// A color palette suitable for a two color Inky display.
@@ -56,6 +61,7 @@ namespace cmdwtf.Dithering.Transforms
 		/// </summary>
 		public static SimpleIndexedPalettePixelTransformInky Inky3Red =>
 			new(
+				nameof(Inky3Red),
 				ArgbColor.FromArgb(255, 0, 0) // red
 				);
 
@@ -66,6 +72,7 @@ namespace cmdwtf.Dithering.Transforms
 		/// </summary>
 		public static SimpleIndexedPalettePixelTransformInky Inky3Yellow =>
 			new(
+				nameof(Inky3Yellow),
 				ArgbColor.FromArgb(255, 255, 0) // yellow
 				);
 
@@ -78,17 +85,18 @@ namespace cmdwtf.Dithering.Transforms
 		/// Based on the colors from https://github.com/pimoroni/inky/blob/fa59811bb5a9aad9eac82da3e58b6dc2ead75b8c/library/inky/inky_uc8159.py#L26-L46
 		/// </remarks>
 		public static SimpleIndexedPalettePixelTransformInky InkyImpression7 =>
-			new(new[]
-			{
-				ArgbColor.FromArgb(0, 0, 0), // black
-				ArgbColor.FromArgb(255, 255, 255), // white
-				ArgbColor.FromArgb(0, 255, 0), // green
-				ArgbColor.FromArgb(0, 0, 255), // blue
-				ArgbColor.FromArgb(255, 0, 0), // red
-				ArgbColor.FromArgb(255, 255, 0), // yellow
-				ArgbColor.FromArgb(255, 140, 0), // orange
-				ArgbColor.FromArgb(255, 255, 255), // white
-			});
+			new(nameof(InkyImpression7),
+				new[]
+				{
+					ArgbColor.FromArgb(0, 0, 0), // black
+					ArgbColor.FromArgb(255, 255, 255), // white
+					ArgbColor.FromArgb(0, 255, 0), // green
+					ArgbColor.FromArgb(0, 0, 255), // blue
+					ArgbColor.FromArgb(255, 0, 0), // red
+					ArgbColor.FromArgb(255, 255, 0), // yellow
+					ArgbColor.FromArgb(255, 140, 0), // orange
+					ArgbColor.FromArgb(255, 255, 255), // white
+				});
 
 		/// <summary>
 		/// A more 'saturated' color palette than <see cref="InkyImpression7"/>.
@@ -99,16 +107,18 @@ namespace cmdwtf.Dithering.Transforms
 		/// Based on the colors from https://github.com/pimoroni/inky/blob/fa59811bb5a9aad9eac82da3e58b6dc2ead75b8c/library/inky/inky_uc8159.py#L26-L46
 		/// </remarks>
 		public static SimpleIndexedPalettePixelTransformInky InkyImpression7Saturated =>
-			new(new[]
-			{
-				ArgbColor.FromArgb(57, 48, 57), // black
-				ArgbColor.FromArgb(255, 255, 255), // white
-				ArgbColor.FromArgb(58, 91, 70), // green
-				ArgbColor.FromArgb(61, 59, 94), // blue
-				ArgbColor.FromArgb(156, 72, 75), // red
-				ArgbColor.FromArgb(208, 190, 71), // yellow
-				ArgbColor.FromArgb(177, 106, 73), // orange
-				ArgbColor.FromArgb(255, 255, 255), // white
-			});
+			new(
+				nameof(InkyImpression7Saturated),
+				new[]
+				{
+					ArgbColor.FromArgb(57, 48, 57), // black
+					ArgbColor.FromArgb(255, 255, 255), // white
+					ArgbColor.FromArgb(58, 91, 70), // green
+					ArgbColor.FromArgb(61, 59, 94), // blue
+					ArgbColor.FromArgb(156, 72, 75), // red
+					ArgbColor.FromArgb(208, 190, 71), // yellow
+					ArgbColor.FromArgb(177, 106, 73), // orange
+					ArgbColor.FromArgb(255, 255, 255), // white
+				});
 	}
 }

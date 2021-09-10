@@ -111,10 +111,9 @@ namespace cmdwtf.Dithering.ColorReduction
 			}
 		}
 
-		bool IErrorDiffusion.Prescan
-		{
-			get { return true; }
-		}
+		bool IErrorDiffusion.Prescan => true;
+
+		public virtual string Name => GetType().Name;
 
 		#endregion
 	}

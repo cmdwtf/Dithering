@@ -65,8 +65,9 @@ namespace cmdwtf.Dithering.ColorReduction
 
 		#region IErrorDiffusion Interface
 
-		bool IErrorDiffusion.Prescan
-		{ get { return false; } }
+		bool IErrorDiffusion.Prescan => false;
+
+		public virtual string Name => GetType().Name;
 
 		void IErrorDiffusion.Diffuse(ArgbColor[] data, ArgbColor original, ArgbColor transformed, int x, int y, int width, int height)
 		{
