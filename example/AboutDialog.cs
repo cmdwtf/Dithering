@@ -48,7 +48,7 @@ namespace cmdwtf.Dithering.Example
 
 		private void closeButton_Click(object sender, EventArgs e) => Close();
 
-		private bool HasLink(LinkLabel.LinkCollection links, int position)
+		private static bool HasLink(LinkLabel.LinkCollection links, int position)
 		{
 			bool result;
 
@@ -93,7 +93,7 @@ namespace cmdwtf.Dithering.Example
 			}
 		}
 
-		private void SetLink(LinkLabel control, string match, string url)
+		private static void SetLink(LinkLabel control, string match, string url)
 		{
 			int index = -1;
 			do

@@ -71,7 +71,7 @@ namespace cmdwtf.Dithering.Transforms
 			return index;
 		}
 
-		private int GetDistance(ArgbColor current, ArgbColor match)
+		private static int GetDistance(ArgbColor current, ArgbColor match)
 		{
 			int redDifference;
 			int greenDifference;
@@ -81,7 +81,7 @@ namespace cmdwtf.Dithering.Transforms
 			greenDifference = current.G - match.G;
 			blueDifference = current.B - match.B;
 
-			return redDifference * redDifference + greenDifference * greenDifference + blueDifference * blueDifference;
+			return (redDifference * redDifference) + (greenDifference * greenDifference) + (blueDifference * blueDifference);
 		}
 
 		#endregion

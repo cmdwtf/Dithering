@@ -18,7 +18,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>image;bitmap;dither;dithering;floyd-steinberg;burkes;jarvis;stucki;sierra;atkinson;diffusion;color;palette</PackageTags>
     <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-    <NeutralLanguage></NeutralLanguage>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

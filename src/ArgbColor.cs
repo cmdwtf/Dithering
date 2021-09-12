@@ -59,10 +59,10 @@ namespace cmdwtf.Dithering
 		}
 
 		internal static ArgbColor FromArgb(byte a, byte r, byte g, byte b)
-			=> new ArgbColor(a, r, g, b);
+			=> new(a, r, g, b);
 
 		internal static ArgbColor FromArgb(byte r, byte g, byte b)
-			=> new ArgbColor(r, g, b);
+			=> new(r, g, b);
 
 		public int ToArgb() => _value;
 

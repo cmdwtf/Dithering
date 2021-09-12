@@ -12,7 +12,7 @@ namespace cmdwtf.Dithering.Transforms
 {
 	public sealed class SimpleIndexedPalettePixelTransformInky : SimpleIndexedPalettePixelTransform
 	{
-		private string _name;
+		private readonly string _name;
 
 		public override string Name => _name;
 
@@ -127,7 +127,7 @@ namespace cmdwtf.Dithering.Transforms
 
 		public static SimpleIndexedPalettePixelTransformInky InkyImpression7Blended(float saturationPercent = 0.5f)
 		{
-			ArgbColor[] resultMap = new ArgbColor[InkyImpression7.PaletteSize];
+			var resultMap = new ArgbColor[InkyImpression7.PaletteSize];
 
 			// clamp our saturation percent from 0 to 1.
 			saturationPercent = System.Math.Clamp(saturationPercent, 0.0f, 1.0f);

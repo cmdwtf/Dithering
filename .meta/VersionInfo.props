@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
-    <PackageReleaseNotes>Add `IPixelTransform.PaletteSize`.</PackageReleaseNotes>
-    <VersionPrefix>1.2.0</VersionPrefix>
+    <PackageReleaseNotes>Add `InkyImpression7Blended`.</PackageReleaseNotes>
+    <VersionPrefix>1.3.0</VersionPrefix>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
   </PropertyGroup>
 </Project>

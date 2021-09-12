@@ -33,7 +33,7 @@ namespace cmdwtf.Dithering.Extensions
 					ArgbColor current;
 					ArgbColor transformed;
 
-					index = row * size.Width + col;
+					index = (row * size.Width) + col;
 
 					current = pixelData[index];
 
@@ -108,3 +108,5 @@ namespace cmdwtf.Dithering.Extensions
 			// return the new color
 			return ArgbColor.FromArgb(a, r, g, b);
 		}
+	}
+}

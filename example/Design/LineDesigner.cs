@@ -1,34 +1,29 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
 namespace Cyotek.Windows.Forms.Design
 {
-  public class LineDesigner : ControlDesigner
-  {
-    #region Overridden Properties
+	public class LineDesigner : ControlDesigner
+	{
+		#region Overridden Properties
 
-    public override SelectionRules SelectionRules
-    {
-      get
-      {
-        SelectionRules result;
+		public override SelectionRules SelectionRules
+		{
+			get
+			{
+				SelectionRules result;
 
-        result = SelectionRules.Visible | SelectionRules.Moveable;
+				result = SelectionRules.Visible | SelectionRules.Moveable;
 
-        switch (((Line)Control).Orientation)
-        {
-          case Orientation.Horizontal:
-            result |= (SelectionRules.RightSizeable | SelectionRules.LeftSizeable);
-            break;
-          default:
-            result |= (SelectionRules.TopSizeable | SelectionRules.BottomSizeable);
-            break;
-        }
+				result |= ((Line)Control).Orientation switch
+				{
+					Orientation.Horizontal => (SelectionRules.RightSizeable | SelectionRules.LeftSizeable),
+					_ => (SelectionRules.TopSizeable | SelectionRules.BottomSizeable),
+				};
+				return result;
+			}
+		}
 
-        return result;
-      }
-    }
-
-    #endregion
-  }
+		#endregion
+	}
 }

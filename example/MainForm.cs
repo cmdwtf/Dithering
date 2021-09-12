@@ -95,7 +95,7 @@ namespace cmdwtf.Dithering.Example
 
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			using AboutDialog dialog = new AboutDialog();
+			using var dialog = new AboutDialog();
 			dialog.ShowDialog(this);
 		}
 
@@ -195,8 +195,8 @@ namespace cmdwtf.Dithering.Example
 					y2 = 0;
 				}
 
-				using Bitmap image = new Bitmap(iw, ih, PixelFormat.Format32bppArgb);
-				using (Graphics g = Graphics.FromImage(image))
+				using var image = new Bitmap(iw, ih, PixelFormat.Format32bppArgb);
+				using (var g = Graphics.FromImage(image))
 				{
 					g.DrawImage(_image, new Rectangle(0, 0, fw, fh), new Rectangle(0, 0, fw, fh), GraphicsUnit.Pixel);
 					g.DrawImage(_transformed, new Rectangle(x2, y2, fw, fh), new Rectangle(0, 0, fw, fh), GraphicsUnit.Pixel);
@@ -481,14 +481,12 @@ namespace cmdwtf.Dithering.Example
 
 		private void originalImageBox_Scroll(object sender, ScrollEventArgs e)
 		{
-			ImageBox source;
-			ImageBox dest;
 			Point sourcePosition;
 			Point destinationPosition;
 			double aspectW;
 			double aspectH;
 
-			DefineImageBoxes(sender, out source, out dest);
+			DefineImageBoxes(sender, out ImageBox source, out ImageBox dest);
 
 			aspectW = source.Image.Size.Width / (double)dest.Image.Size.Width;
 			aspectH = source.Image.Size.Height / (double)dest.Image.Size.Height;

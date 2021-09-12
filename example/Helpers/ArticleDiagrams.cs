@@ -42,7 +42,7 @@ namespace cmdwtf.Dithering.Example.Helpers
 
 			bitmap = new Bitmap(w + 1, h + 1);
 
-			using (Graphics g = Graphics.FromImage(bitmap))
+			using (var g = Graphics.FromImage(bitmap))
 			{
 				g.Clear(Color.Transparent);
 
@@ -132,7 +132,7 @@ namespace cmdwtf.Dithering.Example.Helpers
 
 			bitmap = new Bitmap(w + 1, h + 1);
 
-			using (Graphics g = Graphics.FromImage(bitmap))
+			using (var g = Graphics.FromImage(bitmap))
 			{
 				Color arrowColor;
 				int arrowSize;
@@ -232,7 +232,7 @@ namespace cmdwtf.Dithering.Example.Helpers
 
 			bitmap = new Bitmap(w + 1, h + 1);
 
-			using (Graphics g = Graphics.FromImage(bitmap))
+			using (var g = Graphics.FromImage(bitmap))
 			{
 				Color arrowColor;
 				int arrowSize;
@@ -302,53 +302,45 @@ namespace cmdwtf.Dithering.Example.Helpers
 
 		private static void DrawArrow(Graphics g, Color color, int x, int y, int w, int angle, int penSize, int arrowSize)
 		{
-			using (Matrix rotation = new Matrix(1, 0, 0, 1, 0, 0))
+			using var rotation = new Matrix(1, 0, 0, 1, 0, 0);
+			int halfArrowSize;
+			halfArrowSize = arrowSize >> 1;
+
+			rotation.RotateAt(angle, new Point(x, y));
+			g.Transform = rotation;
+
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+
+			using (var pen = new Pen(color, penSize))
 			{
-				int halfArrowSize;
-				halfArrowSize = arrowSize >> 1;
+				g.DrawLine(pen, x, y, x + w, y);
+			}
 
-				rotation.RotateAt(angle, new Point(x, y));
-				g.Transform = rotation;
-
-				g.SmoothingMode = SmoothingMode.AntiAlias;
-
-				using (Pen pen = new Pen(color, penSize))
-				{
-					g.DrawLine(pen, x, y, x + w, y);
-				}
-
-				using (Brush brush = new SolidBrush(color))
-				{
-					g.FillPolygon(brush, new[]
-										 {
+			using (Brush brush = new SolidBrush(color))
+			{
+				g.FillPolygon(brush, new[]
+									 {
 								 new Point(x + w + penSize - arrowSize, y - halfArrowSize), new Point(x + w + penSize, y), new Point(x + w + penSize - arrowSize, y + halfArrowSize)
 							   });
-				}
-
-				g.SmoothingMode = SmoothingMode.Default;
-
-				g.ResetTransform();
 			}
+
+			g.SmoothingMode = SmoothingMode.Default;
+
+			g.ResetTransform();
 		}
 
 		private static void DrawString(Graphics g, string text, int x, int y, int w, int h, Color color, int size, StringAlignment align, StringAlignment verticalAlign)
 		{
-			using (Font font = new Font("Segoe UI", size, FontStyle.Regular, GraphicsUnit.Point))
-			{
-				using (Brush brush = new SolidBrush(color))
-				{
-					using (StringFormat format = (StringFormat)StringFormat.GenericTypographic.Clone())
-					{
-						format.Alignment = align;
-						format.LineAlignment = verticalAlign;
-						format.HotkeyPrefix = HotkeyPrefix.None;
+			using var font = new Font("Segoe UI", size, FontStyle.Regular, GraphicsUnit.Point);
+			using Brush brush = new SolidBrush(color);
+			using var format = (StringFormat)StringFormat.GenericTypographic.Clone();
+			format.Alignment = align;
+			format.LineAlignment = verticalAlign;
+			format.HotkeyPrefix = HotkeyPrefix.None;
 
-						g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-						g.DrawString(text, font, brush, new Rectangle(x, y, w, h), format);
-						g.TextRenderingHint = TextRenderingHint.SystemDefault;
-					}
-				}
-			}
+			g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+			g.DrawString(text, font, brush, new Rectangle(x, y, w, h), format);
+			g.TextRenderingHint = TextRenderingHint.SystemDefault;
 		}
 
 		#endregion
