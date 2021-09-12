@@ -59,18 +59,22 @@ namespace cmdwtf.Dithering
 		}
 
 		internal static ArgbColor FromArgb(byte a, byte r, byte g, byte b)
-		{
-			return new ArgbColor(a, r, g, b);
-		}
+			=> new ArgbColor(a, r, g, b);
 
 		internal static ArgbColor FromArgb(byte r, byte g, byte b)
-		{
-			return new ArgbColor(r, g, b);
-		}
+			=> new ArgbColor(r, g, b);
 
-		public int ToArgb()
-		{
-			return _value;
-		}
+		public int ToArgb() => _value;
+
+		/// <summary>
+		/// Creates a <see cref="System.Drawing.Color"/> from this instance.
+		/// </summary>
+		/// <returns>A System.Drawing.Color that represents the same color as this instance.</returns>
+		public System.Drawing.Color ToDrawingColor()
+			=> System.Drawing.Color.FromArgb(_value);
+
+
+		public static implicit operator System.Drawing.Color(ArgbColor c)
+			=> c.ToDrawingColor();
 	}
 }

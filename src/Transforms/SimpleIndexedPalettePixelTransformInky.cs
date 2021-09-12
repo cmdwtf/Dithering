@@ -4,6 +4,10 @@
  * Licensed under the MIT License. See LICENSE for the full text.
  */
 
+using System.Linq;
+
+using cmdwtf.Dithering.Extensions;
+
 namespace cmdwtf.Dithering.Transforms
 {
 	public sealed class SimpleIndexedPalettePixelTransformInky : SimpleIndexedPalettePixelTransform
@@ -120,5 +124,23 @@ namespace cmdwtf.Dithering.Transforms
 					ArgbColor.FromArgb(177, 106, 73), // orange
 					ArgbColor.FromArgb(255, 255, 255), // white
 				});
+
+		public static SimpleIndexedPalettePixelTransformInky InkyImpression7Blended(float saturationPercent = 0.5f)
+		{
+			ArgbColor[] resultMap = new ArgbColor[InkyImpression7.PaletteSize];
+
+			// clamp our saturation percent from 0 to 1.
+			saturationPercent = System.Math.Clamp(saturationPercent, 0.0f, 1.0f);
+
+			for (int scan = 0; scan < resultMap.Length; ++scan)
+			{
+				ArgbColor color0 = InkyImpression7.Palette.ElementAt(scan);
+				ArgbColor color1 = InkyImpression7Saturated.Palette.ElementAt(scan);
+				ArgbColor lerped = color0.Lerp(color1, saturationPercent);
+				resultMap[scan] = lerped;
+			}
+
+			return new SimpleIndexedPalettePixelTransformInky($"{nameof(InkyImpression7Blended)}{saturationPercent}");
+		}
 	}
 }

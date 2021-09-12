@@ -62,5 +62,49 @@ namespace cmdwtf.Dithering.Extensions
 		/// <returns>The number of unique colors in the array.</returns>
 		public static int GetColorCount(this ArgbColor[] pixels) =>
 			pixels.Select(c => c.ToArgb()).Distinct().Count();
-	}
-}
+
+		/// <summary>
+		/// Linearly interpolates between by the amount specified. The result is unclamped.
+		/// This method *does* guarantee result = value1 when t = 1. However, this method is
+		/// *only* monotonic when (value0 * value1 < 0). Lerping between the same values might not produce
+		/// the same result.
+		/// If you need the result to be monotonic, use  <see cref="LerpMonotonic(double, double, double)"/>
+		/// instead.
+		/// </summary>
+		/// <param name="value0">The start value.</param>
+		/// <param name="value1">The end value.</param>
+		/// <param name="t">The amount of way to interpolate where 0.0f is the start value, and 1.0f is the end value.</param>
+		/// <returns>The interpolated value.</returns>
+		/// <remarks>See also: https://en.wikipedia.org/wiki/Linear_interpolation#Programming_language_support </remarks>
+		public static double Lerp(this double value0, double value1, double t)
+			=> ((1 - t) * value0) + (t * value1);
+
+		/// <inheritdoc cref="Lerp(double, double, double)"/>
+		public static float Lerp(this float value0, float value1, float t)
+			=> ((1 - t) * value0) + (t * value1);
+
+
+		/// <summary>
+		/// A color based linear interpolation.
+		/// </summary>
+		/// <param name="color">The color to lerp from.</param>
+		/// <param name="to">The color to lerp to.</param>
+		/// <param name="amount">The amount of distance to lerp, as a value from 0.0f-1.0f. This value is unclamped.</param>
+		/// <returns>The interpolated color.</returns>
+		public static ArgbColor Lerp(this ArgbColor color, ArgbColor to, float amount)
+		{
+			// start colors as lerp-able floats
+			float sr = color.R, sg = color.G, sb = color.B, sa = color.A;
+
+			// end colors as lerp-able floats
+			float er = to.R, eg = to.G, eb = to.B, ea = to.A;
+
+			// lerp the colors to get the difference
+			byte r = (byte)sr.Lerp(er, amount),
+				 g = (byte)sg.Lerp(eg, amount),
+				 b = (byte)sb.Lerp(eb, amount),
+				 a = (byte)sa.Lerp(ea, amount);
+
+			// return the new color
+			return ArgbColor.FromArgb(a, r, g, b);
+		}
