@@ -140,7 +140,7 @@ namespace cmdwtf.Dithering.Transforms
 				resultMap[scan] = lerped;
 			}
 
-			return new SimpleIndexedPalettePixelTransformInky($"{nameof(InkyImpression7Blended)}{saturationPercent}");
+			return new SimpleIndexedPalettePixelTransformInky($"{nameof(InkyImpression7Blended)}{saturationPercent}", resultMap);
 		}
 	}
 }
